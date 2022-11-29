@@ -14,6 +14,7 @@ builder.Services.AddScoped<IHttpService, HttpService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISquadService, SquadService>();
 builder.Services.AddScoped<IListeService, ListeService>();
+builder.Services.AddScoped<IIdeaService, IdeaService>();
 
 var app = builder.Build();
 
