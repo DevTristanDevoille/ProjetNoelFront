@@ -1,0 +1,31 @@
+﻿@model ProjetNoelWeb.WebApplication.ViewModels.RegisterViewModel
+
+<form method="post" asp-action="register" asp-controller="Register" class="sectionLogin">
+    <h1 class="Title">Création d'un compte</h1>
+
+    <span class="errorText" asp-validation-for="Username"></span>
+    <div class="roundedOrangeInput">
+        <i class="fa-solid fa-user"></i>
+        <input asp-for="@Model.Username" placeholder="Nom d'utilisateur" />
+    </div>
+
+    <span class="errorText" asp-validation-for="Password"></span>
+    <div class="roundedOrangeInput">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" asp-for="@Model.Password" placeholder="Mot de passe" />
+    </div>
+
+    <span class="errorText" asp-validation-for="Email"></span>
+    <div class="roundedOrangeInput">
+        <i class="fa-solid fa-user"></i>
+        <input type="email" asp-for="@Model.Email" placeholder="Email" />
+    </div>
+
+    <span class="errorText" asp-validation-for="Avatar"></span>
+    <div class="roundedOrangeInput">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" asp-for="@Model.Avatar" placeholder="Url de l'avatar" />
+    </div>
+
+    <input type="submit" class="orangeRoundedButton" value="Créer un compte" />
+</form>

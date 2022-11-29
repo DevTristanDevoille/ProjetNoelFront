@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/LayoutPage.css" rel="stylesheet">
+    <link href="~/css/LoginPage.css" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet">
+    <link href="~/css/SquadsPage.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <title>Projet Liste Noel</title>
+    <style></style>
+</head>
+<body>
+    <header>
+        <div class="spacedButtons" style="width:100%;text-align:right;padding-top:20px">
+            <a asp-controller="Register" asp-action="" style="background-color:transparent;color:black;" class="orangeRoundedButton">S'inscrire</a>
+        </div>
+    </header>
+    <section class="wrapper">
+        <section class="content">
+            @RenderBody()
+        </section>
+    </section>
+
+    <script type="text/javascript" src="~/scripts/popup.js"></script>
+    <script type="text/javascript" src="~/scripts/squads.js"></script>
+    <script type="text/javascript" src="~/scripts/squad.js"></script>
+
+</body>
+</html>

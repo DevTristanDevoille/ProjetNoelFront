@@ -1,0 +1,29 @@
+﻿@model ProjetNoelWeb.WebApplication.ViewModels.ListesViewModel
+
+<section class="sectionSurveys">
+    <div class="btnNewSurveyDiv">
+        <a asp-controller="Squad" asp-action="" class="orangeRoundedButton">Nouvelle Liste</a>
+    </div>
+
+    <h3 class="surveyTitle">Listes de l'équipe</h3>
+
+    <div class="surveys">
+
+        @if (Model?.Listes != null || Model?.Listes?.Count() < 1)
+        {
+            foreach (var liste in Model.Listes)
+            {
+                <div class="oneSurvey">
+                    <div>
+                        <a asp-route-listeId="@liste.Id" asp-controller="Ideas">@liste.Name</a>
+                    </div>
+                    <div><a asp-route-listeId="@liste.Id" asp-controller="listes" asp-action="editListes"><i class="fas fa-edit"></i></a> <a onclick="showPopupDeleteSurvey(@liste.Id)"><i class="fas fa-trash-alt"></i></a></div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Aucune séance à afficher</p>
+        }
+    </div>
+</section>
