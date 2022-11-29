@@ -1,0 +1,12 @@
+﻿@model ProjetNoelWeb.WebApplication.Models.Squad
+
+<form method="post" asp-action="JoinSquad" asp-controller="Squads" class="sectionLogin">
+    <h1 class="Title">Rejoindre un évenement</h1>
+
+    <span class="errorText" asp-validation-for="Code"></span>
+    <div class="roundedOrangeInput">
+        <input asp-for="@Model.Code" placeholder="Code de l'evenement'" />
+    </div>
+
+    <input type="submit" class="orangeRoundedButton" value="Rejoindre un évenement" />
+</form>

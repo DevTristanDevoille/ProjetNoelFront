@@ -23,5 +23,19 @@ namespace ProjetNoelWeb.WebApplication.Services
             List<Liste> resultListe = await _httpService.SendHttpRequest<List<Liste>>(url, HttpMethod.Get,bearer:token);
             return resultListe;
         }
+
+        public async Task<Liste> GetListe(int idListe,string token)
+        {
+            var url = $"{Constants.BaseUrlApi}Liste/GetById?idListe={idListe}";
+            Liste resultListe = await _httpService.SendHttpRequest<Liste>(url, HttpMethod.Get, bearer: token);
+            return resultListe;
+        }
+
+        public async Task<Liste> CreateListe(Liste liste,string token)
+        {
+            var url = $"{Constants.BaseUrlApi}Liste";
+            Liste resultListe = await _httpService.SendHttpRequest<Liste>(url, HttpMethod.Post,liste,bearer: token);
+            return resultListe;
+        }
     }
 }

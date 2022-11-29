@@ -6,5 +6,6 @@ namespace ProjetNoelWeb.WebApplication.ViewModels
     {
         public Liste Liste { get; set; }
         public IEnumerable<Idea> Ideas { get; set; }
+        public int idUser { get; set; }
     }
 }

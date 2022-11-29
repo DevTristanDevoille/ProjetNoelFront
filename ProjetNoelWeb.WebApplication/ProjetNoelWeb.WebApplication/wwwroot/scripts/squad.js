@@ -1,4 +1,4 @@
-﻿function slist() {
+﻿ function slist() {
     var target = document.getElementById("sortlist");
     target.classList.add("slist");
     //let items = target.querySelectorAll("li.QuestionInstruction");
@@ -73,7 +73,10 @@ function addInput(name) {
     var i = document.createElement('i'); // create i 
     var li = document.createElement('li'); // Create parent div
     var input = document.createElement('input'); // Create input
-    var p = document.createElement('p');
+    var inputName = document.createElement('input');
+    var inputUrl = document.createElement('input');
+    var inputPrice = document.createElement('input');
+    var inputIsTake = document.createElement('input');
     var inputListPosition = document.createElement('input');
 
     li.classList.add("roundedOrangeInput"); // Add class to parent div
@@ -91,16 +94,39 @@ function addInput(name) {
     inputListPosition.type = 'hidden';
     inputListPosition.value = name;
 
-    input.placeholder = "Ajouter une " + name; // Add placeholder in input
-    input.name = "inputQuestionInstruction";
+    inputIsTake.name = "inputIsTake"
+    inputIsTake.type = "hidden"
+    inputIsTake.value = false
 
-    p.textContent = name + " : ";
-    p.style.marginTop = "auto";
-    p.style.marginBottom = "auto";
+    //input.placeholder = "Ajouter un " + name; // Add placeholder in input
+    //input.name = "inputQuestionInstruction";
 
-    li.appendChild(p);
+    inputName.placeholder = "Entrer votre nom d'idée"
+    inputName.name = "inputListName"
+    inputName.style.marginTop = "auto";
+    inputName.style.marginBottom = "auto";
+
+    inputUrl.placeholder = "Entrer l'url vers votre idée"
+    inputUrl.name = "inputListUrl"
+    inputUrl.style.marginTop = "auto";
+    inputUrl.style.marginBottom = "auto";
+
+    inputPrice.placeholder = "Entrer le prix de votre idée"
+    inputPrice.name = "inputListPrice"
+    inputPrice.type = "number"
+    inputPrice.style.marginTop = "auto";
+    inputPrice.style.marginBottom = "auto";
+
+    //p.textContent = name + " : ";
+    //p.style.marginTop = "auto";
+    //p.style.marginBottom = "auto";
+
+    //li.appendChild(p);
     li.appendChild(inputListPosition);
-    li.appendChild(input); // Add input to div
+    li.appendChild(inputIsTake); // Add input to div
+    li.appendChild(inputName);
+    li.appendChild(inputUrl);
+    li.appendChild(inputPrice);
     li.appendChild(i);
 
 

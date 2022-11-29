@@ -24,5 +24,12 @@ namespace ProjetNoelWeb.WebApplication.Services
             var resultIdeas = await _httpService.SendHttpRequest<List<Idea>>(url, HttpMethod.Get, bearer: token);
             return resultIdeas;
         }
+
+        public async Task<List<Idea>> UpdateIdeas(List<Idea> ideas, string token)
+        {
+            var url = $"{Constants.BaseUrlApi}Idea";
+            var resultIdeas = await _httpService.SendHttpRequest<List<Idea>>(url, HttpMethod.Put,ideas, bearer: token);
+            return resultIdeas;
+        }
     }
 }

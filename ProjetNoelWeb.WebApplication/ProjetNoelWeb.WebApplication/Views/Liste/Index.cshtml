@@ -1,0 +1,17 @@
+﻿@model ProjetNoelWeb.WebApplication.Models.Liste
+
+<form method="post" asp-action="CreateListe" asp-controller="Liste" class="sectionLogin">
+    <h1 class="Title">Création d'une Liste</h1>
+
+    <span class="errorText" asp-validation-for="Name"></span>
+    <div class="roundedOrangeInput">
+        <input asp-for="@Model.Name" placeholder="Nom de la liste" />
+    </div>
+
+    <span class="errorText" asp-validation-for="Description"></span>
+    <div class="roundedOrangeInput">
+        <input asp-for="@Model.Description" placeholder="Description de la liste" />
+    </div>
+
+    <input type="submit" class="orangeRoundedButton" value="Créer une liste" />
+</form>

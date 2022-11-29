@@ -19,6 +19,6 @@ namespace ProjetNoelWeb.WebApplication.Services.Interfaces
         /// <param name="administrator">The administrator</param>
         /// <param name="token">THe token in the Cookies</param>
         /// <returns></returns>
-        Task Register(UserDTOUp user, string token);
+        Task<UserTokenDTODown> Register(UserDTOUp user);
     }
 }

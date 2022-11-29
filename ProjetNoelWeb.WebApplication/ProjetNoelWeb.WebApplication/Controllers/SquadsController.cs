@@ -16,10 +16,20 @@ namespace ProjetNoelWeb.WebApplication.Controllers
 
         public async Task<IActionResult> Index()
         {
-
             IEnumerable<Squad> squads = await _squadService.GetAllSquad(HttpContext.Request.Cookies["Token"]);
             SquadsViewModel model = new SquadsViewModel { Squades = squads };
             return View(model);
+        }
+
+        public IActionResult JoinPageSquad()
+        {
+            return this.View("JoinSquad");
+        }
+
+        public async Task<IActionResult> JoinSquad(Squad squad)
+        {
+            var result = await _squadService.JoinSquad(squad.Code, HttpContext.Request.Cookies["Token"]);
+            return RedirectToAction("Index", "Squads");
         }
     }
 }

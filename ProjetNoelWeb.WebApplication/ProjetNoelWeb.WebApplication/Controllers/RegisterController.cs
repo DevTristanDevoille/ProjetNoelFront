@@ -58,7 +58,9 @@ namespace ProjetNoelWeb.WebApplication.Controllers
                 Email = registerViewModel.Email                
             };
 
-            await _userService.Register(user, HttpContext.Request.Cookies["Token"]);
+            var resultRegister = await _userService.Register(user);
+
+            HttpContext.Response.Cookies.Append("Token", resultRegister .Token, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
 
             return RedirectToAction("Index", "squads");
         }

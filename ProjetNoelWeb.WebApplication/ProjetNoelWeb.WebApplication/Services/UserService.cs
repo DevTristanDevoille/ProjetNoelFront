@@ -20,12 +20,11 @@ namespace ProjetNoelWeb.WebApplication.Services
         }
         #endregion
 
-
         #region Login()
         public async Task<UserTokenDTODown> Login(UserConnexionDTOUp user)
         {
             // Get route + endpoint
-            var url = $"{Constants.BaseUrlApi}Connexion";
+            var url = $"{Constants.BaseUrlApi}User/Connexion";
             // Call the SendHttpRequest() method from httpService Shared
             var resultConnexion = await _httpService.SendHttpRequest<UserTokenDTODown>(url, HttpMethod.Post,user);
             // Return the adminsistrator
@@ -34,12 +33,13 @@ namespace ProjetNoelWeb.WebApplication.Services
         #endregion
 
         #region Register()
-        public async Task Register(UserDTOUp user, string token)
+        public async Task<UserTokenDTODown> Register(UserDTOUp user)
         {
             // Get route + endpoint
-            var url = $"{Constants.BaseUrlApi}users";
+            var url = $"{Constants.BaseUrlApi}User";
             // Call the SendHttpRequest() from the httpService Shared
-            var resultRegister = await _httpService.SendHttpRequest<object>(url, HttpMethod.Post, user);
+            UserTokenDTODown resultRegister = await _httpService.SendHttpRequest<UserTokenDTODown>(url, HttpMethod.Post,user);
+            return resultRegister;
         }
         #endregion
     }
