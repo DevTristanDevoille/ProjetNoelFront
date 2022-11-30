@@ -11,22 +11,30 @@ on:
 
 jobs:
   build:
+  
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v1
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '6.0.x'
-          include-prerelease: true
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      - name: Restore dependencies
+        run: |
+              cd ProjetNoelWeb.WebApplication/ProjetNoelWeb.WebApplication/
+              dir
+              dotnet restore
+      - name: Build
+        run: dotnet build ProjetNoelWeb.WebApplication/ProjetNoelWeb.WebApplication/ --configuration Release --no-restore
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: |
+              dir
+              dotnet publishProjetNoelWeb.WebApplication/ProjetNoelWeb.WebApplication.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
