@@ -10,9 +10,11 @@
         <h1 class="Title">Cadeaux de la liste : <span>@Model.Liste.Name</span></h1>
     </div>
 
-    <section class="surveyButtons" style="margin-top: 20px; margin-bottom: 20px">
-        <button onclick="addInput('Cadeaux')" class="orangeRoundedButton doubleButton newInstQuest">Nouvelle Idée de cadeau</button>
-    </section>
+    @if (Model.Liste.IdCreator == Model.idUser){
+        <section class="surveyButtons" style="margin-top: 20px; margin-bottom: 20px">
+            <button onclick="addInput('Cadeaux')" class="orangeRoundedButton doubleButton newInstQuest">Nouvelle Idée de cadeau</button>
+        </section>
+    }
 
     <input value="" type="hidden" name="orderInputs" id="orderInputs" />
 
