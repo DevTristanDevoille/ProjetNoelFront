@@ -25,7 +25,6 @@ jobs:
       - name: Restore dependencies
         run: |
               cd ProjetNoelWeb.WebApplication/ProjetNoelWeb.WebApplication/
-              dir
               dotnet restore
       - name: Build
         run: dotnet build ProjetNoelWeb.WebApplication/ProjetNoelWeb.WebApplication/ --configuration Release --no-restore
