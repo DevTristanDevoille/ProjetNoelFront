@@ -15,7 +15,7 @@ namespace ProjetNoelWeb.WebApplication.Filters
             // If the routes are not going on "/" and "/login" and "/Error"
             if (context.HttpContext.Request.Path.Value != "/"
                 && !context.HttpContext.Request.Path.Value.Contains("/login")
-                && !context.HttpContext.Request.Path.Value.Contains("/Register")
+                && !context.HttpContext.Request.Path.Value.Contains("/register")
                 && !context.HttpContext.Request.Path.Value.Contains("/Error")
                 )
             {
