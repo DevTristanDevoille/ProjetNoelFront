@@ -72,7 +72,7 @@ function addInput(name) {
     var ul = document.getElementById('sortlist'); // get the list 
     var i = document.createElement('i'); // create i 
     var li = document.createElement('li'); // Create parent div
-    var input = document.createElement('input'); // Create input
+    var inputListId = document.createElement('input'); // Create input
     var inputName = document.createElement('input');
     var inputUrl = document.createElement('input');
     var inputPrice = document.createElement('input');
@@ -96,7 +96,11 @@ function addInput(name) {
 
     inputIsTake.name = "inputIsTake"
     inputIsTake.type = "hidden"
-    inputIsTake.value = false
+    inputIsTake.value = "False"
+
+    inputListId.name = "inputListId"
+    inputListId.type = "hidden"
+    inputListId.value = ""
 
     //input.placeholder = "Ajouter un " + name; // Add placeholder in input
     //input.name = "inputQuestionInstruction";
@@ -122,6 +126,7 @@ function addInput(name) {
     //p.style.marginBottom = "auto";
 
     //li.appendChild(p);
+    li.appendChild(inputListId)
     li.appendChild(inputListPosition);
     li.appendChild(inputIsTake); // Add input to div
     li.appendChild(inputName);

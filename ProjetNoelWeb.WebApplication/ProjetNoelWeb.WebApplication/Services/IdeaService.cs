@@ -20,15 +20,22 @@ namespace ProjetNoelWeb.WebApplication.Services
 
         public async Task<List<Idea>> GetAllIdeas(int idListe, string token)
         {
-            var url = $"{Constants.BaseUrlApi}/Idea?idListe={idListe}";
-            var resultIdeas = await _httpService.SendHttpRequest<List<Idea>>(url, HttpMethod.Get, bearer: token);
+            string url = $"{Constants.BaseUrlApi}/Idea?idListe={idListe}";
+            List<Idea> resultIdeas = await _httpService.SendHttpRequest<List<Idea>>(url, HttpMethod.Get, bearer: token);
             return resultIdeas;
         }
 
         public async Task<List<Idea>> UpdateIdeas(List<Idea> ideas, string token)
         {
-            var url = $"{Constants.BaseUrlApi}Idea";
-            var resultIdeas = await _httpService.SendHttpRequest<List<Idea>>(url, HttpMethod.Put,ideas, bearer: token);
+            string url = $"{Constants.BaseUrlApi}Idea";
+            List<Idea> resultIdeas = await _httpService.SendHttpRequest<List<Idea>>(url, HttpMethod.Put,ideas, bearer: token);
+            return resultIdeas;
+        }
+
+        public async Task<List<Idea>> CreateIdeas(List<Idea> ideas, string token)
+        {
+            string url = $"{Constants.BaseUrlApi}Idea";
+            List<Idea> resultIdeas = await _httpService.SendHttpRequest<List<Idea>>(url, HttpMethod.Post, ideas, bearer: token);
             return resultIdeas;
         }
     }

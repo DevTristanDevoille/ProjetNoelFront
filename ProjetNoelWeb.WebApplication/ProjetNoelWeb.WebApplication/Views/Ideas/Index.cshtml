@@ -22,12 +22,16 @@
             <li class="roundedOrangeInput bigInput">
                 @if (Model.Liste.IdCreator != Model.idUser)
                 {
-                    <input type="checkbox" value="@idea.IsTake" name="inputIsTake">
+                    <input type="checkbox" value="@idea.IsTake" name="inputIsTake"/>
                 }
+                else{
+                    <input type="hidden" value="@idea.IsTake.ToString()" name="inputIsTake"/>
+                }
+                <input name="inputListId" value="@idea.Id" type="hidden"/>
                 <input name="inputListPosition" value="@idea.Name" type="hidden" />
                 <input type="text" name="inputListName" style="margin-top:auto;margin-bottom:auto" value="@idea.Name"/>
                 <input name="inputListUrl" style="margin-top:auto;margin-bottom:auto" value="Lien vers l'idée : @idea.UrlIdea"/>
-                <input type="number" name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value=" Prix : @idea.Price €"/>
+                <input type="text" name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value="Prix : @idea.Price €" />
             </li>
         }
     </ul>

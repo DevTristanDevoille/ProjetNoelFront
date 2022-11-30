@@ -12,7 +12,7 @@ namespace ProjetNoelWeb.WebApplication.Models
         public string? UrlIdea { get; set; }
         public int Position { get; set; }
         [Required]
-        public bool? IsTake { get; set; }
+        public bool IsTake { get; set; }
         [JsonIgnore]
         public Liste? Liste { get; set; }
         public int IdListe { get; set; }

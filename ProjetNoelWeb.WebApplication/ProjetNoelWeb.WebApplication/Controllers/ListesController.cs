@@ -18,9 +18,7 @@ namespace ProjetNoelWeb.WebApplication.Controllers
         public async Task<IActionResult> Index(int squadId)
         {
             if(squadId == 0 && Constants.idSquad != 0)
-            {
                 squadId = Constants.idSquad;
-            }
             else
                 Constants.idSquad = squadId;
             var result = await _listeService.GetAllListes(squadId,HttpContext.Request.Cookies["Token"]);
@@ -32,7 +30,7 @@ namespace ProjetNoelWeb.WebApplication.Controllers
         {
             List<Liste> result = await _listeService.GetAllListes(Constants.idSquad, HttpContext.Request.Cookies["Token"]);
             ListesViewModel model = new ListesViewModel() { Listes = result };
-            return View("Index",model);
+            return RedirectToAction("Index","listes");
         }
     }
 }
