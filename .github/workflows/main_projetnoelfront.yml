@@ -30,9 +30,7 @@ jobs:
         run: dotnet build ProjetNoelWeb.WebApplication/ProjetNoelWeb.WebApplication/ --configuration Release --no-restore
 
       - name: dotnet publish
-        run: |
-              dir
-              dotnet publishProjetNoelWeb.WebApplication/ProjetNoelWeb.WebApplication.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish ProjetNoelWeb.WebApplication/ProjetNoelWeb.WebApplication.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
 
       - name: Upload artifact for deployment job
