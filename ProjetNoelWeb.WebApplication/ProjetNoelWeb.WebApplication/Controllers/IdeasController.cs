@@ -41,12 +41,22 @@ namespace ProjetNoelWeb.WebApplication.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> EditIdeas(List<string>? inputListName, List<string>? inputListUrl, List<string>? inputListPrice, List<string>? inputListPosition, List<string> inputIsTake, List<string>? inputListId)
+        public async Task<IActionResult> EditIdeas(List<string>? inputListName, List<string>? inputListUrl, List<string>? inputListPrice, List<string>? inputListPosition, List<string>? inputIsTake, List<string>? inputListId, List<string>? inputIdTake)
         {
             List<Idea> newIdeas = new List<Idea>();
             List<Idea> updateIdeas = new List<Idea>();
             Liste liste = await _listeService.GetListe(Constants.idListe, HttpContext.Request.Cookies["Token"]);
-            List<Idea> actualIdeas = await _ideaService.GetAllIdeas(Constants.idListe, HttpContext.Request.Cookies["Token"]);
+            List<string> listIsTake = new List<string>();
+
+            for (int j = 0; j <= inputListId.Count() - 1; j++)
+            {
+                listIsTake.Add("False");
+            }
+
+            foreach (var item in inputIdTake)
+            {
+                listIsTake[int.Parse(item)] = "True";
+            }
 
             for (int i = 0; i <= inputListPosition.Count() - 1; i++)
             {
@@ -63,17 +73,24 @@ namespace ProjetNoelWeb.WebApplication.Controllers
 
                 if (inputListId[i] != null)
                 {
-                    if (inputIsTake[i] == "False")
+                    if (listIsTake[i] == "False")
+                    {
                         if (inputListPrice[i] != null && inputListPrice[i] != "€")
                             idea = new Idea() { Position = i, Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id, Id = int.Parse(inputListId[i]) };
                         else
                             idea = new Idea() { Position = i, Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id, Id = int.Parse(inputListId[i]) };
+
+                        updateIdeas.Add(idea);
+                    }
                     else
+                    {
                         if (inputListPrice[i] != null && inputListPrice[i] != "€")
                             idea = new Idea() { Position = i, Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id, Id = int.Parse(inputListId[i]) };
                         else
                             idea = new Idea() { Position = i, Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id, Id = int.Parse(inputListId[i]) };
-                    updateIdeas.Add(idea);
+
+                        updateIdeas.Add(idea);
+                    }
                 }
                 else
                 {
@@ -82,11 +99,11 @@ namespace ProjetNoelWeb.WebApplication.Controllers
                             idea = new Idea() { Position = i, Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id };
                         else
                             idea = new Idea() { Position = i, Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id };
-                    else
-                        if(inputListPrice[i] != null && inputListPrice[i] != "€")
-                            idea = new Idea() { Position = i, Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id };
-                        else
-                            idea = new Idea() { Position = i, Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id };
+                    //else
+                    //    if(inputListPrice[i] != null && inputListPrice[i] != "€")
+                    //        idea = new Idea() { Position = i, Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id };
+                    //    else
+                    //        idea = new Idea() { Position = i, Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id };
                     newIdeas.Add(idea);
                 }
 
@@ -97,5 +114,11 @@ namespace ProjetNoelWeb.WebApplication.Controllers
 
             return RedirectToAction("Index", "Ideas");
         }
+
+        //public async Task<IActionResult> EditIdeas(List<Idea> ideas)
+        //{
+        //    var toto = "toto";
+        //    return RedirectToAction("Index", "Ideas");
+        //}
     }
 }
