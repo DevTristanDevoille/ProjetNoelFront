@@ -20,7 +20,7 @@ namespace ProjetNoelWeb.WebApplication.Services
 
         public async Task<List<Idea>> GetAllIdeas(int idListe, string token)
         {
-            string url = $"{Constants.BaseUrlApi}/Idea?idListe={idListe}";
+            string url = $"{Constants.BaseUrlApi}Idea?idListe={idListe}";
             List<Idea> resultIdeas = await _httpService.SendHttpRequest<List<Idea>>(url, HttpMethod.Get, bearer: token);
             return resultIdeas;
         }
