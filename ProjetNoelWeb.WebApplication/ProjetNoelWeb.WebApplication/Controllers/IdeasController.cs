@@ -36,7 +36,7 @@ namespace ProjetNoelWeb.WebApplication.Controllers
             var resultIdeas = await _ideaService.GetAllIdeas(listeId, HttpContext.Request.Cookies["Token"]);
             var resultListe = await _listeService.GetListe(listeId, HttpContext.Request.Cookies["Token"]);
 
-            IdeasViewModel model = new IdeasViewModel() { Ideas = resultIdeas, Liste = resultListe, idUser = int.Parse(result) };
+            IdeasViewModel model = new IdeasViewModel() { Ideas = resultIdeas.OrderBy(i => i.Position), Liste = resultListe, idUser = int.Parse(result) };
 
             return View(model);
         }
