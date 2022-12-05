@@ -9,6 +9,7 @@ namespace ProjetNoelWeb.WebApplication.ViewModels
 
         [Required(ErrorMessage = "Entrez un mot de passe"), MinLength(4, ErrorMessage = "Le mot de passe doit posséder au moins 4 caractères")]
         public string? Password { get; set; }
+        [Required(ErrorMessage = "Entre un email")]
         public string? Email { get; set; }
         public string? Avatar { get; set; }
         public string? ErrorMessage { get; set; }
