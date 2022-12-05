@@ -23,7 +23,6 @@
 
     inputListPosition.name = 'inputListPosition';
     inputListPosition.type = 'number';
-    inputListPosition.value = name;
 
     inputIsTake.name = "inputIsTake"
     inputIsTake.type = "hidden"
