@@ -10,28 +10,43 @@
         <h1 class="Title">Cadeaux de la liste : <span>@Model.Liste.Name</span></h1>
     </div>
 
-    <section class="surveyButtons" style="margin-top: 20px; margin-bottom: 20px">
-        <button onclick="addInput('Cadeaux')" class="orangeRoundedButton doubleButton newInstQuest">Nouvelle Idée de cadeau</button>
-    </section>
+    @if (Model.Liste.IdCreator == Model.idUser){
+        <section class="surveyButtons" style="margin-top: 20px; margin-bottom: 20px">
+            <button onclick="addInput('Cadeaux')" class="orangeRoundedButton doubleButton newInstQuest">Nouvelle Idée de cadeau</button>
+        </section>
+    }
 
     <input value="" type="hidden" name="orderInputs" id="orderInputs" />
 
     <ul id="sortlist">
         @foreach (var idea in Model.Ideas)
         {
-            <li class="roundedOrangeInput bigInput">
+            <li id="element+@idea.Position" class="roundedOrangeInput bigInput">
                 @if (Model.Liste.IdCreator != Model.idUser)
                 {
-                    <input type="checkbox" value="@idea.IsTake" name="inputIsTake"/>
+                    @if(idea.IsTake){
+                        <input type="checkbox" value="@idea.IsTake" name="inputIsTake" checked onclick="addValue(@idea.Position)" />
+                    }
+                    else{
+                        <input type="checkbox" value="@idea.IsTake" name="inputIsTake" onclick="addValue(@idea.Position)" />
+                    }
+                    <input name="inputListId" value="@idea.Id" type="hidden" />
+                    <input name="inputListPosition" value="@idea.Position" type="hidden" />
+                    <input type="hidden" name="inputListName" style="margin-top:auto;margin-bottom:auto" value="@idea.Name" />
+                    <input type="hidden" name="inputListUrl" style="margin-top:auto;margin-bottom:auto" value="Lien vers l'idée : @idea.UrlIdea" />
+                    <input type="hidden" name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value="Prix : @idea.Price €" />
+                    <p name="inputListName" style="margin-top:auto;margin-bottom:auto">@idea.Name</p>
+                    <p name="inputListUrl" style="margin-top:auto;margin-bottom:auto">Lien vers l'idée : @idea.UrlIdea</p>
+                    <p name="inputListPrice" style="margin-top:auto;margin-bottom:auto">Prix : @idea.Price €</p>
                 }
                 else{
                     <input type="hidden" value="@idea.IsTake.ToString()" name="inputIsTake"/>
+                    <input name="inputListId" value="@idea.Id" type="hidden" />
+                    <input name="inputListPosition" value="@idea.Name" type="hidden" />
+                    <input type="text" name="inputListName" style="margin-top:auto;margin-bottom:auto" value="@idea.Name" />
+                    <input name="inputListUrl" style="margin-top:auto;margin-bottom:auto" value="Lien vers l'idée : @idea.UrlIdea" />
+                    <input type="text" name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value="Prix : @idea.Price €" />
                 }
-                <input name="inputListId" value="@idea.Id" type="hidden"/>
-                <input name="inputListPosition" value="@idea.Name" type="hidden" />
-                <input type="text" name="inputListName" style="margin-top:auto;margin-bottom:auto" value="@idea.Name"/>
-                <input name="inputListUrl" style="margin-top:auto;margin-bottom:auto" value="Lien vers l'idée : @idea.UrlIdea"/>
-                <input type="text" name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value="Prix : @idea.Price €" />
             </li>
         }
     </ul>
@@ -44,6 +59,19 @@
     <script>
         window.addEventListener("DOMContentLoaded", () => {
             slist();
+            addValue()
         });
+        function addValue(position) {
+            var li = document.getElementById('element+' + position); // get the list
+            console.log(position)
+            console.log(li)
+            var inputIdTake = document.createElement('input'); // Create input
+            inputIdTake.name = "inputIdTake"
+            inputIdTake.type = "hidden"
+            inputIdTake.value = position
+
+            li.appendChild(inputIdTake)
+
+        }
     </script>
 </form>

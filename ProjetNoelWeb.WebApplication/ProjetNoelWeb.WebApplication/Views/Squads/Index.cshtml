@@ -2,11 +2,11 @@
 
 <section class="sectionSurveys">
     <div class="btnNewSurveyDiv">
-        <a asp-controller="Squad" asp-action="" class="orangeRoundedButton">Nouvel évenement</a>
-        <a asp-controller="Squads" asp-action="JoinPageSquad" class="orangeRoundedButton" style="align-content:flex-end">Rejoindre un évenement</a>
+        <a asp-controller="Squad" asp-action="" class="orangeRoundedButton">Nouvel évènement</a>
+        <a asp-controller="Squads" asp-action="JoinPageSquad" class="orangeRoundedButton" style="align-content:flex-end">Rejoindre un évènement</a>
     </div>
 
-    <h3 class="surveyTitle">Mes évenements</h3>
+    <h3 class="surveyTitle">Mes évènements</h3>
 
     <div class="surveys">
 
@@ -16,16 +16,16 @@
             {
                 <div class="oneSurvey">
                     <div>
-                        <a asp-route-squadId="@squad.Id" asp-controller="listes"> Nom de l'évenement : @squad.Name</a>
-                        <h5>Code de l'évenement : @squad.Code</h5>
+                        <a asp-route-squadId="@squad.Id" asp-controller="listes"> Nom de l'évènement : @squad.Name</a>
+                        <h5>Code de l'évènement : @squad.Code</h5>
                     </div>
-                    <div><a asp-route-squadId="@squad.Id" asp-controller="squads" asp-action="editSquad"><i class="fas fa-edit"></i></a> <a onclick="showPopupDeleteSurvey(@squad.Id)"><i class="fas fa-trash-alt"></i></a></div>
+                    @*<div><a asp-route-squadId="@squad.Id" asp-controller="squads" asp-action="editSquad"><i class="fas fa-edit"></i></a> <a onclick="showPopupDeleteSurvey(@squad.Id)"><i class="fas fa-trash-alt"></i></a></div>*@
                 </div>
             }
         }
         else
         {
-            <p>Aucun évenement à afficher</p>
+            <p>Aucun évènement à afficher</p>
         }
     </div>
 </section>

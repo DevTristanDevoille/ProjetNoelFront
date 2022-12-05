@@ -5,7 +5,7 @@
         <a asp-controller="Liste" asp-action="" class="orangeRoundedButton">Nouvelle Liste</a>
     </div>
 
-    <h3 class="surveyTitle">Listes de l'équipe</h3>
+    <h3 class="surveyTitle">Liste(s) associée(s) à l'évènement choisi</h3>
 
     <div class="surveys">
 
@@ -17,7 +17,7 @@
                     <div>
                         <a asp-route-listeId="@liste.Id" asp-controller="Ideas">@liste.Name</a>
                     </div>
-                    <div><a asp-route-listeId="@liste.Id" asp-controller="listes" asp-action="editListes"><i class="fas fa-edit"></i></a> <a onclick="showPopupDeleteSurvey(@liste.Id)"><i class="fas fa-trash-alt"></i></a></div>
+                    @*<div><a asp-route-listeId="@liste.Id" asp-controller="listes" asp-action="editListes"><i class="fas fa-edit"></i></a> <a onclick="showPopupDeleteSurvey(@liste.Id)"><i class="fas fa-trash-alt"></i></a></div>*@
                 </div>
             }
         }
