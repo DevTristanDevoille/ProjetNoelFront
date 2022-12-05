@@ -91,7 +91,7 @@ function addInput(name) {
     i.classList.add("fa-trash-alt"); // Add trash style to i
 
     inputListPosition.name = 'inputListPosition';
-    inputListPosition.type = 'hidden';
+    inputListPosition.type = 'number';
     inputListPosition.value = name;
 
     inputIsTake.name = "inputIsTake"
