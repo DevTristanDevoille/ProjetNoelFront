@@ -35,6 +35,7 @@
                     <input type="hidden" name="inputListName" style="margin-top:auto;margin-bottom:auto" value="@idea.Name" />
                     <input type="hidden" name="inputListUrl" style="margin-top:auto;margin-bottom:auto" value="Lien vers l'idée : @idea.UrlIdea" />
                     <input type="hidden" name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value="Prix : @idea.Price €" />
+                    <p>Rang de l'idée : @idea.Position</p>
                     <p name="inputListName" style="margin-top:auto;margin-bottom:auto">@idea.Name</p>
                     <p name="inputListUrl" style="margin-top:auto;margin-bottom:auto">Lien vers l'idée : @idea.UrlIdea</p>
                     <p name="inputListPrice" style="margin-top:auto;margin-bottom:auto">Prix : @idea.Price €</p>
@@ -42,7 +43,7 @@
                 else{
                     <input type="hidden" value="@idea.IsTake.ToString()" name="inputIsTake"/>
                     <input name="inputListId" value="@idea.Id" type="hidden" />
-                    <input name="inputListPosition" value="@idea.Name" type="hidden" />
+                    <input name="inputListPosition" value="@idea.Position" type="number"/>
                     <input type="text" name="inputListName" style="margin-top:auto;margin-bottom:auto" value="@idea.Name" />
                     <input name="inputListUrl" style="margin-top:auto;margin-bottom:auto" value="Lien vers l'idée : @idea.UrlIdea" />
                     <input type="text" name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value="Prix : @idea.Price €" />
@@ -57,10 +58,10 @@
     </div>
 
     <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            slist();
-            addValue()
-        });
+        //window.addEventListener("DOMContentLoaded", () => {
+        //    slist();
+        //    addValue()
+        //});
         function addValue(position) {
             var li = document.getElementById('element+' + position); // get the list
             console.log(position)
@@ -71,7 +72,6 @@
             inputIdTake.value = position
 
             li.appendChild(inputIdTake)
-
         }
     </script>
 </form>
