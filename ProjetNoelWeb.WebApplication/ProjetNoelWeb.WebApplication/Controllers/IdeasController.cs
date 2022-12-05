@@ -49,14 +49,14 @@ namespace ProjetNoelWeb.WebApplication.Controllers
             List<Idea> actualIdeas = await _ideaService.GetAllIdeas(liste.Id, HttpContext.Request.Cookies["Token"]);
             List<string> listIsTake = new List<string>();
 
-            for (int j = 0; j <= inputListId.Count() - 1; j++)
+            for (int j = 1; j <= inputListId.Count(); j++)
             {
                 listIsTake.Add("False");
             }
 
             foreach (var item in inputIdTake)
             {
-                listIsTake[int.Parse(item)] = "True";
+                listIsTake[int.Parse(item)-1] = "True";
             }
 
             for (int i = 0; i <= inputListPosition.Count() - 1; i++)
@@ -69,6 +69,9 @@ namespace ProjetNoelWeb.WebApplication.Controllers
 
                 if (inputListUrl[i] != null)
                     inputListUrl[i] = inputListUrl[i].Replace("Lien vers l'idée : ", "");
+
+                if (inputListPosition[i] != null)
+                    inputListPosition[i] = inputListPosition[i].Replace("Ordre de préférence : ", "");
 
                 Idea idea = new Idea();
 
@@ -110,19 +113,25 @@ namespace ProjetNoelWeb.WebApplication.Controllers
 
             }
 
-            var resultCreate = await _ideaService.CreateIdeas(newIdeas, HttpContext.Request.Cookies["Token"]);
 
-            foreach (var actualIdea in actualIdeas)
+            if (newIdeas.Count != 0 || newIdeas != null)
             {
-                foreach (var updateIdea in updateIdeas)
-                {
-                    if(updateIdea.Id == actualIdea.Id && actualIdea.IsTake == true)
-                        updateIdea.IsTake = true;
-                }
+                var resultCreate = await _ideaService.CreateIdeas(newIdeas, HttpContext.Request.Cookies["Token"]);
             }
 
+            if (updateIdeas != null || updateIdeas.Count != 0)
+            {
+                foreach (var actualIdea in actualIdeas)
+                {
+                    foreach (var updateIdea in updateIdeas)
+                    {
+                        if (updateIdea.Id == actualIdea.Id && actualIdea.IsTake == true)
+                            updateIdea.IsTake = true;
+                    }
+                }
 
-            var resultUpdate = await _ideaService.UpdateIdeas(updateIdeas, HttpContext.Request.Cookies["Token"]);
+                var resultUpdate = await _ideaService.UpdateIdeas(updateIdeas, HttpContext.Request.Cookies["Token"]);
+            }
 
             return RedirectToAction("Index", "Ideas");
         }
