@@ -58,19 +58,12 @@
     </div>
 
     <script>
-        //window.addEventListener("DOMContentLoaded", () => {
-        //    slist();
-        //    addValue()
-        //});
         function addValue(position) {
             var li = document.getElementById('element+' + position); // get the list
-            console.log(position)
-            console.log(li)
             var inputIdTake = document.createElement('input'); // Create input
             inputIdTake.name = "inputIdTake"
             inputIdTake.type = "hidden"
             inputIdTake.value = position
-
             li.appendChild(inputIdTake)
         }
     </script>
