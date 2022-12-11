@@ -8,6 +8,7 @@
     var inputUrl = document.createElement('input');
     var inputPrice = document.createElement('input');
     var inputIsTake = document.createElement('input');
+    var textAreaCommentaire = document.createElement('input');
     var inputListPosition = document.createElement('input');
 
     li.classList.add("roundedOrangeInput"); // Add class to parent div
@@ -27,6 +28,10 @@
     inputIsTake.name = "inputIsTake"
     inputIsTake.type = "hidden"
     inputIsTake.value = "False"
+
+    textAreaCommentaire.name = "textAreaCommentaire"
+    textAreaCommentaire.type = "hidden"
+    textAreaCommentaire.value = "";
 
     inputListId.name = "inputListId"
     inputListId.type = "hidden"

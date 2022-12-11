@@ -31,14 +31,11 @@
                         <input type="checkbox" value="@idea.IsTake" name="inputIsTake" onclick="addValue(@idea.Position)" />
                     }
                     <input name="inputListId" value="@idea.Id" type="hidden" />
-@*                    <input name="inputListPosition" value="@idea.Position" type="hidden" />
-                    <input type="hidden" name="inputListName" style="margin-top:auto;margin-bottom:auto" value="@idea.Name" />
-                    <input type="hidden" name="inputListUrl" style="margin-top:auto;margin-bottom:auto" value="Lien vers l'idée : @idea.UrlIdea" />
-                    <input type="hidden" name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value="Prix : @idea.Price €" />*@
                     <input readonly name="inputListPosition" value="Ordre de préférence : @idea.Position" />
                     <input readonly name="inputListName" style="margin-top:auto;margin-bottom:auto" value="@idea.Name"/>
                     <input readonly name="inputListUrl" style="margin-top:auto;margin-bottom:auto" value="Lien vers l'idée : @idea.UrlIdea"/>
                     <input readonly name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value="Prix : @idea.Price €">
+                    <textarea name="textAreaCommentaire" style="margin-top:auto;margin-bottom:auto;width:200px;height:100px;background-color:white;border:double" placeholder="Ecrivez vos commentaires">@idea.Commentaire</textarea>
                 }
                 else{
                     <input type="hidden" value="@idea.IsTake.ToString()" name="inputIsTake"/>
@@ -47,6 +44,7 @@
                     <input type="text" name="inputListName" style="margin-top:auto;margin-bottom:auto" value="@idea.Name" />
                     <input name="inputListUrl" style="margin-top:auto;margin-bottom:auto" value="Lien vers l'idée : @idea.UrlIdea" />
                     <input type="text" name="inputListPrice" style="margin-top:auto;margin-bottom:auto" value="Prix : @idea.Price €" />
+                    <input type="hidden" name="textAreaCommentaire" style="margin-top:auto;margin-bottom:auto" value="@idea.Commentaire" />
                 }
             </li>
         }
@@ -60,11 +58,23 @@
     <script>
         function addValue(position) {
             var li = document.getElementById('element+' + position); // get the list
-            var inputIdTake = document.createElement('input'); // Create input
-            inputIdTake.name = "inputIdTake"
-            inputIdTake.type = "hidden"
-            inputIdTake.value = position
-            li.appendChild(inputIdTake)
+            var deleted = 0
+            var essai = li.getElementsByTagName('input')
+            for (var ligne = 0; ligne < essai.length; ligne++){
+                if (essai[ligne].name === "inputIdTake") {
+                    li.removeChild(essai[ligne])
+                    deleted = 1
+                    break;
+                }
+                
+            }
+            if(deleted != 1){
+                var inputIdTake = document.createElement('input'); // Create input
+                inputIdTake.name = "inputIdTake"
+                inputIdTake.type = "hidden"
+                inputIdTake.value = position
+                li.appendChild(inputIdTake)
+            }
         }
     </script>
 </form>

@@ -41,7 +41,7 @@ namespace ProjetNoelWeb.WebApplication.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> EditIdeas(List<string>? inputListName, List<string>? inputListUrl, List<string>? inputListPrice, List<string>? inputListPosition, List<string>? inputIsTake, List<string>? inputListId, List<string>? inputIdTake)
+        public async Task<IActionResult> EditIdeas(List<string>? inputListName, List<string>? inputListUrl, List<string>? inputListPrice, List<string>? inputListPosition, List<string>? inputIsTake, List<string>? inputListId, List<string>? inputIdTake, List<string>? textAreaCommentaire)
         {
             List<Idea> newIdeas = new List<Idea>();
             List<Idea> updateIdeas = new List<Idea>();
@@ -80,18 +80,18 @@ namespace ProjetNoelWeb.WebApplication.Controllers
                     if (listIsTake[i] == "False")
                     {
                         if (inputListPrice[i] != null && inputListPrice[i] != "€")
-                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id, Id = int.Parse(inputListId[i]) };
+                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id, Id = int.Parse(inputListId[i]), Commentaire = textAreaCommentaire[i] };
                         else
-                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id, Id = int.Parse(inputListId[i]) };
+                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id, Id = int.Parse(inputListId[i]),Commentaire = textAreaCommentaire[i] };
 
                         updateIdeas.Add(idea);
                     }
                     else
                     {
                         if (inputListPrice[i] != null && inputListPrice[i] != "€")
-                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id, Id = int.Parse(inputListId[i]) };
+                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id, Id = int.Parse(inputListId[i]), Commentaire = textAreaCommentaire[i] };
                         else
-                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id, Id = int.Parse(inputListId[i]) };
+                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id, Id = int.Parse(inputListId[i]), Commentaire = textAreaCommentaire[i] };
 
                         updateIdeas.Add(idea);
                     }
@@ -100,9 +100,9 @@ namespace ProjetNoelWeb.WebApplication.Controllers
                 {
                     if (inputIsTake[i] == "False")
                         if (inputListPrice[i] != null && inputListPrice[i] != "€")
-                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id };
+                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id, Commentaire = "" };
                         else
-                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id };
+                            idea = new Idea() { Position = int.Parse(inputListPosition[i]), Name = inputListName[i], UrlIdea = inputListUrl[i], IsTake = false, IdListe = liste.Id, Commentaire = "" };
                     //else
                     //    if(inputListPrice[i] != null && inputListPrice[i] != "€")
                     //        idea = new Idea() { Position = i, Name = inputListName[i], Price = float.Parse(inputListPrice[i]), UrlIdea = inputListUrl[i], IsTake = true, IdListe = liste.Id };
